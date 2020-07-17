@@ -1,24 +1,24 @@
 #include <stdio.h>
 
-/* print a Fahrenheit-Celsius table from -20 to 300 Fahrenheit witch have 20 degrees between each row*/
+/* print a Fahrenheit-Celsius table from -20 to 500 Fahrenheit witch have 20 degrees between each row*/
+
+#define LOWER -20 // lower limit
+#define UPPER 500 // upper limit
+#define STEP 20   // step size
 
 int main()
 {
 	float fahrenheit, celsius;
 
-	fahrenheit = -20;
+	fahrenheit = LOWER;
 
 	printf("Fahrenheit | Celsius\n");
 
 	do {
-		celsius = (5.0/9.0)*(fahrenheit-32);	
-		if( fahrenheit >= 0 && fahrenheit < 100 ){
-			printf("%10.2f | %4.2f\n", fahrenheit, celsius);
-		} else {
-			printf("%10.2f | %4.2f\n", fahrenheit, celsius);
-		}
-		fahrenheit += 20; 
+		printf("%10.2f | %4.2f\n", fahrenheit, (5.0/9.0)*(fahrenheit-32));
 
-	} while (fahrenheit <= 300);
+		fahrenheit += STEP; 
+
+	} while (fahrenheit <= UPPER );
 	return 1;
 } 
