@@ -20,5 +20,5 @@ int main()
 		fahrenheit += STEP; 
 
 	} while (fahrenheit <= UPPER );
-	return 1;
+	return 0;
 } 
