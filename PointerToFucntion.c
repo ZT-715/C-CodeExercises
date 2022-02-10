@@ -9,27 +9,40 @@
 
 #include <stdio.h>
 
-int sum(int a, int b), divide(int a, int b), mod(int a, int b);
+float sum(float a, float b), divide(float a, float b), multiply(float a, float b);
+
+
 
 int main(void)
 {
+    typedef float (*pointer_to_function)(float, float);    // see more on 5.11 C Book
 
-    int (*ftpr)(int, int) = (&sum);    // see more on 5.11 C Book
+    pointer_to_function function_array[3];
 
-//    int array_ptr_function[3] = ;
+    function_array[0] = (&sum);
+    function_array[1] = (&divide);
+    function_array[2] = (&multiply);
 
-//    array_ptr_function[1] = (*divide)(int, int);
-//    array_ptr_function[2] = (*mod)(int, int);
+    printf("Fist function: %.2f\n",   (*function_array[0])(1.1, 10.0));   // sum
 
-    printf("Fist function: %i\n", (*ftpr)(1, 10));
+    printf("Second function: %.2f\n", (*function_array[1])(10.0, 4.0));   // divide
 
-//    printf("Second function:\n");
-//    printf("Third function:\n");
+    printf("Third function: %0.2f\n", (*function_array[2])(10.5, 2.0));   // multiply
 
     return 0;
 }
 
-int sum(int a, int b)
+float sum(float a, float b)
 {
     return a+b;
+}
+
+float  divide(float a, float b)
+{
+    return a/b;
+}
+
+float multiply(float a, float b)
+{
+    return a*b;
 }
