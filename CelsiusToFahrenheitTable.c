@@ -14,11 +14,15 @@ int main()
 
 	printf("Fahrenheit | Celsius\n");
 
-	do {
-		printf("%10.2f | %4.2f\n", fahrenheit, (5.0/9.0)*(fahrenheit-32));
+    do
+      {
+        celsius = (5.0 / 9.0) * (fahrenheit - 32);
 
-		fahrenheit += STEP; 
+        printf("%10.2f | %4.2f\n", fahrenheit, celsius);
 
-	} while (fahrenheit <= UPPER );
-	return 0;
+        fahrenheit += STEP;
+      }
+    while (fahrenheit <= UPPER );
+
+    return 0;
 } 
