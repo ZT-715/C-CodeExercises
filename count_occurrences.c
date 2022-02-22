@@ -5,28 +5,33 @@
 #include <errno.h>
 #include <err.h>
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Use a text file as argument.\n");
-        return EXIT_FAILURE;
-    }
-
+int main(int argc, char *argv[])
+{
     FILE *fp;
-
-    if ((fp = fopen(argv[1], "r")) == NULL) {
-        err(errno, "%s", argv[1]);
-    }
 
     volatile unsigned long num_blanks;
     volatile unsigned long num_tabs;
     volatile unsigned long num_lines;
 
-    unsigned int current;
+    unsigned int current_value;
 
-    while (current != EOF) {
-        current = fgetc(fp);
+    if (argc != 2)
+    {
+        fprintf(stderr, "Use a text file as argument.\n");
+        return EXIT_FAILURE;
+    }
 
-        switch (current) {
+    if ((fp = fopen(argv[1], "r")) == NULL)
+    {
+        err(errno, "%s", argv[1]);
+    }
+
+    while (current_value != EOF)
+    {
+        current_value = fgetc(fp);
+
+        switch (current_value)
+        {
             case ' ':
                 num_blanks++;
                 break;
@@ -42,9 +47,7 @@ int main(int argc, char *argv[]) {
             default:
                 break;
         }
-
     }
-
     fclose(fp);
 
     printf("Number of blanks:   %li \n", num_blanks);
